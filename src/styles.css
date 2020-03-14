@@ -9,6 +9,8 @@
 body{
     padding:0;
     margin:0;
+    font-family: 'Open Sans Condensed', sans-serif;
+        font-weight: 200;
    
 }
 p{
@@ -34,9 +36,69 @@ p{
 }
 .btnMap{
     width: 100% !important;
-    top: 0;
+    bottom: 0 ;
     left:0;
     position: absolute !important;
     z-index: 99;
    
+}
+.btnMap button{
+    border:1px solid #ccc;
+    background:#fff;
+    padding:5px 20px;
+    font-size:14px;
+    margin-right: 5px;
+}
+.textSearch{
+
+    position: absolute;
+    width: 400px;
+    top: 40px;
+    left: 50%;
+    margin: 0 auto;
+    margin-left: -200px;
+}
+.textSearch input{
+    padding:10px 20px;
+    font-size:18px;
+}
+.columList {
+    position: absolute;
+    width: 400px;
+    bottom: 0;
+    left: 0; 
+    z-index: 999;
+    background:#fff;
+    font-family: 'Julius Sans One', sans-serif;
+}
+.columList ul{
+       
+    height:500px;
+    overflow :auto;
+}
+.storelocator-list li {
+    background: transparent;
+    font-family: 'Abel', sans-serif;
+
+    padding: 10px 20px;
+    border-bottom: 1px solid rgb(200, 199, 197);
+
+    list-style: none;
+}
+ul{
+    margin: 0;
+    padding:0;
+}
+.storelocator-list li p{
+    margin-bottom: 8px;
+    font-family: 'Abel', sans-serif;
+
+}
+.small{
+    font-size:14px;
+}
+.sticky{
+    padding: 20px;
+    border-bottom: 1px solid rgb(200, 199, 197);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 7px 1px;
 }

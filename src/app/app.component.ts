@@ -20,6 +20,7 @@ export class AppComponent implements OnInit, DoCheck {
     maxZoom: 40,
     minZoom: 8
   };
+  results = [];
   changed = true;
   icon ='https://www.baume-et-mercier.com/etc.clientlibs/richemont-bem/ui/clientlibs/libs/resources/static/bem-pin-icon.svg';
   markers = [];
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit, DoCheck {
       };
       this.dataServiceService.getResult().subscribe((resp: any) => {
       this.pushMarkers(resp);
+      this.results = resp;
       });
 
     });
@@ -52,6 +54,8 @@ export class AppComponent implements OnInit, DoCheck {
   pushMarkers(response) {
 
     for (let index = 0; index < response.length; index++) {
+      this.getDistanceFromLatLonInKm(this.center.lat, this.center.lng,
+        response[index].location.latitude, response[index].location.longitude);
       this.markers.push({
         position: {
           lat: response[index].location.latitude,
@@ -83,6 +87,7 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   addMarker() {
+
     this.markers.push({
       position: {
         lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
@@ -110,5 +115,22 @@ export class AppComponent implements OnInit, DoCheck {
       lng: place.geometry.location.lng()
     };
     this.map.getProjection();
+  }
+  getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the earth in km
+    const dLat = this.deg2rad(lat2 - lat1);  // deg2rad below
+    const dLon = this.deg2rad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2)
+      ;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const d = R * c; // Distance in km
+    return d;
+  }
+
+  deg2rad(deg) {
+    return deg * (Math.PI / 180)
   }
 }

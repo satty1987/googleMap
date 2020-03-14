@@ -24,12 +24,29 @@
 </div>
 
 <div class="btnMap">
-  <p>
-    <AutocompleteComponent (setAddress)="getAddress($event)" adressType="geocode"></AutocompleteComponent>
-  </p>
+
 
   <button (click)="zoomIn()">Zoom in</button>
   <button (click)="zoomOut()">Zoom out</button>
   <button (click)="logCenter()">Log center</button>
   <!-- <button (click)="addMarker()">Add marker</button> -->
+</div>
+
+<div class="textSearch">
+  <AutocompleteComponent (setAddress)="getAddress($event)" adressType="geocode"></AutocompleteComponent>
+</div>
+<div class="columList storelocator-list">
+  <div class=" p-4 small sticky" >{{results.length}} STORES NEAR YOUR LOCATION
+  </div>
+  <ul class="list-group">
+   
+    <li class="list-group-item p-4 " *ngFor="let item of results">
+      <h4 class="text-bold">{{item.shortName}}</h4>
+      <p class="mb-0 small">  {{item.address.street}}</p>
+      <p class="mb-0 small"> {{item.address.zipCode}},{{item.address.state}}</p>
+      <p class="mb-0 small">  {{item.address.country}}</p>
+      <p class="mb-0 small"> Tel:{{item.phoneNumber}}</p>
+    </li>
+  
+  </ul>
 </div>
