@@ -11,7 +11,7 @@ export class AppComponent implements OnInit, DoCheck {
   title = 'googleMap';
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow;
-  zoom = 12;
+  zoom = 10;
   center: google.maps.LatLngLiteral;
   options: google.maps.MapOptions = {
     zoomControl: false,
