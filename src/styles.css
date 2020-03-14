@@ -35,9 +35,9 @@ p{
     font-weight: bold !important;
 }
 .btnMap{
-    width: 100% !important;
+   
     bottom: 0 ;
-    left:0;
+    right: 0;
     position: absolute !important;
     z-index: 99;
    

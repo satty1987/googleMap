@@ -7,11 +7,11 @@ import { DataServiceService } from './services/api.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, DoCheck {  
+export class AppComponent implements OnInit, DoCheck {
   title = 'googleMap';
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow;
-  zoom = 10;
+  zoom = 12;
   center: google.maps.LatLngLiteral;
   options: google.maps.MapOptions = {
     zoomControl: false,
@@ -21,6 +21,7 @@ export class AppComponent implements OnInit, DoCheck {
     minZoom: 8
   };
   results = [];
+  ShopList = [];
   changed = true;
   icon ='https://www.baume-et-mercier.com/etc.clientlibs/richemont-bem/ui/clientlibs/libs/resources/static/bem-pin-icon.svg';
   markers = [];
@@ -34,8 +35,10 @@ export class AppComponent implements OnInit, DoCheck {
         lng: position.coords.longitude
       };
       this.dataServiceService.getResult().subscribe((resp: any) => {
-      this.pushMarkers(resp);
-      this.results = resp;
+        this.ShopList = [...resp];
+        this.NearestCity(this.center.lat, this.center.lng, resp);
+       
+
       });
 
     });
@@ -52,10 +55,9 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   pushMarkers(response) {
+   
 
     for (let index = 0; index < response.length; index++) {
-      this.getDistanceFromLatLonInKm(this.center.lat, this.center.lng,
-        response[index].location.latitude, response[index].location.longitude);
       this.markers.push({
         position: {
           lat: response[index].location.latitude,
@@ -114,23 +116,41 @@ export class AppComponent implements OnInit, DoCheck {
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng()
     };
-    this.map.getProjection();
+    this.zoom =10;
+    this.NearestCity(this.center.lat, this.center.lng, this.ShopList);
+
   }
-  getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Radius of the earth in km
-    const dLat = this.deg2rad(lat2 - lat1);  // deg2rad below
-    const dLon = this.deg2rad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2)
-      ;
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const d = R * c; // Distance in km
+  Deg2Rad(deg) {
+    return deg * Math.PI / 180;
+  }
+
+  PythagorasEquirectangular(lat1, lon1, lat2, lon2) {
+    lat1 = this.Deg2Rad(lat1);
+    lat2 = this.Deg2Rad(lat2);
+    lon1 = this.Deg2Rad(lon1);
+    lon2 = this.Deg2Rad(lon2);
+    const R = 50000; // km
+    const x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
+    const y = (lat2 - lat1);
+    const d = Math.sqrt(x * x + y * y) * R;
     return d;
   }
 
-  deg2rad(deg) {
-    return deg * (Math.PI / 180)
+  NearestCity(latitude, longitude, locations) {
+    const mindif = 500;
+    let closest;
+    this.results = [];
+
+    for (let index = 0; index <  this.ShopList.length; ++index) {
+      const dif = this.PythagorasEquirectangular(latitude, longitude, locations[index].location.latitude, 
+        locations[index].location.longitude);
+      if (dif < mindif) {
+        closest = index;
+       // mindif = dif;
+        this.results.push(locations[index]);
+      }
+    }
+    this.pushMarkers(this.results);
+    console.log(this.results);
   }
 }
