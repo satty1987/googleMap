@@ -46,6 +46,8 @@
       <p class="mb-0 small"> {{item.address.zipCode}},{{item.address.state}}</p>
       <p class="mb-0 small">  {{item.address.country}}</p>
       <p class="mb-0 small"> Tel:{{item.phoneNumber}}</p>
+
+      <a  target="_blank" class="btn-link" href="https://www.google.com/maps/search/{{item.shortName}}/@{{item.location.latitude}},{{item.location.longitude}},15z/data=!5m1!1e4">Get Direction</a>
     </li>
   
   </ul>

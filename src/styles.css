@@ -36,7 +36,7 @@ p{
 }
 .btnMap{
    
-    bottom: 0 ;
+    bottom: 20px ;
     right: 0;
     position: absolute !important;
     z-index: 99;
@@ -101,4 +101,12 @@ ul{
     padding: 20px;
     border-bottom: 1px solid rgb(200, 199, 197);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 7px 1px;
+}
+.btn-link{
+    background:#000;
+    color:#fff;
+    text-decoration: none;
+    padding:10px 20px;
+    display:inline-block;
+    margin: 20px 0;
 }
