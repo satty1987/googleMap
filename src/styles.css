@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+.map-container{
+    width: 100% !important;
+    top: 0;
+    left:0;
+    position: fixed !important;
+    height:100% !important;
+}
+body{
+    padding:0;
+    margin:0;
+   
+}
+p{
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-top:0;
+}
+.gm-style .gm-style-iw-c{
+    padding:20px 15px !important;
+    border-radius: 0 !important;
+}
+.gm-style button.gm-ui-hover-effect > img{
+    width:20px !important;
+    height:20px !important;
+  
+
+}
+.gm-ui-hover-effect{
+    right: 0 !important;
+}
+.text-bold{
+    font-weight: bold !important;
+}
+.btnMap{
+    width: 100% !important;
+    top: 0;
+    left:0;
+    position: absolute !important;
+    z-index: 99;
+   
+}
