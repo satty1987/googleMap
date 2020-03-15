@@ -110,3 +110,14 @@ ul{
     display:inline-block;
     margin: 20px 0;
 }
+
+@media (max-width: 480px){
+    .textSearch{
+        top:0;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        margin: 0;
+        margin-left: 0;
+    }
+}

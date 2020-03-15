@@ -25,9 +25,9 @@
   </div>
 
   <div class="columList storelocator-list">
-    <div class=" p-4 small sticky" >{{results.length}} STORES NEAR YOUR LOCATION
+    <div class=" p-4 small sticky"  (click)="toggle()">{{results.length}} STORES NEAR YOUR LOCATION
     </div>
-    <ul class="list-group">
+    <ul class="list-group" *ngIf="isCollapse" >
      
       <li class="list-group-item p-4 " *ngFor="let item of results">
         <h3 class="text-bold">{{item.shortName}}</h3>

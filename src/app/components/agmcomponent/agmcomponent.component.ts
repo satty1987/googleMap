@@ -17,6 +17,7 @@ export class AgmcomponentComponent implements OnInit {
   markers = [];
   zoom = 8;
   results = [];
+  isCollapse = false;
   icon = 'https://www.baume-et-mercier.com/etc.clientlibs/richemont-bem/ui/clientlibs/libs/resources/static/bem-pin-icon.svg';
 
   currentIW = null;
@@ -91,5 +92,8 @@ export class AgmcomponentComponent implements OnInit {
       this.previousIW.close();
     }
     this.previousIW = infoWindow;
+}
+toggle(){
+  this.isCollapse = !this.isCollapse;
 }
 }
