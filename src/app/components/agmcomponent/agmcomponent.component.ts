@@ -32,10 +32,10 @@ export class AgmcomponentComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-      });
-      this.dataServiceService.getResult().subscribe((resp: any) => {
-        this.ShopList = [...resp];
-        this.NearestCity(this.latitude, this.longitude, resp);
+        this.dataServiceService.getResult().subscribe((resp: any) => {
+          this.ShopList = [...resp];
+          this.NearestCity(this.latitude, this.longitude, resp);
+        });
       });
     } else {
       alert('Geo Location Not Supported')
