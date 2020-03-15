@@ -8,7 +8,7 @@
 *ngFor="let marker of markers"
 [latitude]="marker.location.latitude"
 [longitude]="marker.location.longitude"
-[markerDraggable]="true"
+[markerDraggable]="false"
 (markerClick)="selectMarker($event)"
 [iconUrl]= "icon"
 (markerClick)=markerClick(iw)
