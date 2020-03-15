@@ -96,4 +96,10 @@ export class AgmcomponentComponent implements OnInit {
 toggle(){
   this.isCollapse = !this.isCollapse;
 }
+searchStore(object){
+  this.map.setCenter({ lat: object.location.latitude, lng: object.location.longitude });
+  this.isCollapse = false;
+  this.zoom = 12;
+
+}
 }
