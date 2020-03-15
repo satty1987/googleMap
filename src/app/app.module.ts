@@ -8,6 +8,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { AutocompleteComponent } from './autocomplete';
 import { AgmcomponentComponent } from './components/agmcomponent/agmcomponent.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
     GoogleMapsModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCRH6YL5meJxd_e8uFLQ6Rt6xFAYCDlfmY'
+      apiKey: environment.APIKEY
     })
   ],
   schemas: [
