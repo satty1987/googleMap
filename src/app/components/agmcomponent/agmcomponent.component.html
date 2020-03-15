@@ -3,6 +3,7 @@
 [longitude]='longitude' 
 [usePanning]="true"
 (mapReady)="mapReady($event)"
+[styles]="styles"
 [mapTypeId]='mapType'>
 <agm-marker
 *ngFor="let marker of markers"
