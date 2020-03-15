@@ -28,16 +28,18 @@ export class AgmcomponentComponent implements OnInit {
     this.map = map;
   }
   ngOnInit(): void {
-    navigator.geolocation.getCurrentPosition(position => {
-      this.latitude = position.coords.latitude;
-      this.longitude = position.coords.longitude;
-    });
-    this.dataServiceService.getResult().subscribe((resp: any) => {
-      this.ShopList = [...resp];
-      this.NearestCity(this.latitude , this.longitude, resp) ;
-
-
-    });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+      });
+      this.dataServiceService.getResult().subscribe((resp: any) => {
+        this.ShopList = [...resp];
+        this.NearestCity(this.latitude, this.longitude, resp);
+      });
+    } else {
+      alert('Geo Location Not Supported')
+    }
   }
   getAddress(place: any) {
     this.latitude = place.geometry.location.lat();
