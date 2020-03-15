@@ -168,7 +168,7 @@ export class AgmcomponentComponent implements OnInit {
       'elementType': 'geometry',
       'stylers': [
         {
-          'color': '#c9c9c9'
+          'color': '#2196F3'
         }
       ]
     },
@@ -177,7 +177,7 @@ export class AgmcomponentComponent implements OnInit {
       'elementType': 'labels.text.fill',
       'stylers': [
         {
-          'color': '#9e9e9e'
+          'color': '#00BCD4'
         }
       ]
     }
