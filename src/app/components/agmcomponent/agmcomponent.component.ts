@@ -177,7 +177,7 @@ export class AgmcomponentComponent implements OnInit {
       'elementType': 'labels.text.fill',
       'stylers': [
         {
-          'color': '#00BCD4'
+          'color': '#ffffff'
         }
       ]
     }
