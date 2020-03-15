@@ -6,23 +6,30 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { AutocompleteComponent } from './autocomplete';
+import { AgmcomponentComponent } from './components/agmcomponent/agmcomponent.component';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    AgmcomponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     GoogleMapsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCRH6YL5meJxd_e8uFLQ6Rt6xFAYCDlfmY'
+    })
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
     NO_ERRORS_SCHEMA
   ],
-  providers: [],
+  providers: [GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
