@@ -176,7 +176,7 @@ export class AgmcomponentComponent implements OnInit {
       'elementType': 'labels.text.fill',
       'stylers': [
         {
-          'color': '#ffffff'
+          color: '#ffffff'
         }
       ]
     }
@@ -187,6 +187,11 @@ export class AgmcomponentComponent implements OnInit {
     this.map = map;
   }
   ngOnInit(): void {
+
+    if (window.innerWidth > 480) {
+
+      this.isCollapse = true;
+    }
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.latitude = position.coords.latitude;
@@ -204,7 +209,6 @@ export class AgmcomponentComponent implements OnInit {
     this.latitude = place.geometry.location.lat();
     this.longitude = place.geometry.location.lng();
     this.map.setCenter({ lat: this.latitude, lng: this.longitude });
-  
     this.NearestCity(this.latitude , this.longitude , this.ShopList);
 
     this.zoom = 10;
