@@ -20,8 +20,7 @@ export class AgmcomponentComponent implements OnInit {
   isCollapse = false;
   icon = 'https://www.baume-et-mercier.com/etc.clientlibs/richemont-bem/ui/clientlibs/libs/resources/static/bem-pin-icon.svg';
 
-  currentIW = null;
-  previousIW = null;
+  infoWindowOpened = null;
   styles: any[] = [
     {
       'elementType': 'geometry',
@@ -209,11 +208,14 @@ export class AgmcomponentComponent implements OnInit {
     this.NearestCity(this.latitude , this.longitude , this.ShopList);
 
     this.zoom = 10;
+    this.infoWindowOpened = null;
+
   }
-  selectMarker(event){
-    console.log(event);
+  selectMarker(event, id) {
+    console.log(id);
     this.map.setCenter({ lat: event.latitude, lng: event.longitude });
     this.zoom = 12;
+    this.scrollTabContentToTop(id);
   }
   Deg2Rad(deg) {
     return deg * Math.PI / 180;
@@ -249,12 +251,15 @@ export class AgmcomponentComponent implements OnInit {
     console.log(this.results);
     this.zoom = 10;
   }
-  markerClick(infoWindow) {
-    if (this.previousIW) {
-      this.currentIW = infoWindow;
-      this.previousIW.close();
+  showInfoWindow(infoWindow) {
+    if (this.infoWindowOpened === infoWindow) {
+        return;
     }
-    this.previousIW = infoWindow;
+
+    if (this.infoWindowOpened !== null) {
+        this.infoWindowOpened.close();
+    }
+    this.infoWindowOpened = infoWindow;
 }
 toggle(){
   this.isCollapse = !this.isCollapse;
@@ -265,4 +270,22 @@ searchStore(object){
   this.zoom = 12;
 
 }
+  private scrollTabContentToTop(id): void {
+
+    if (!this.isCollapse) {
+      return;
+    }
+
+    const els: any = document.getElementsByClassName('list-group-item');
+    for (let i = 0; i < els.length; i++) {
+      els[i].classList.remove('active');
+    }
+    const ele = document.getElementById(id);
+    ele.scrollIntoView();
+    ele.classList.add('active');
+
+
+    // document.getElementById('ulContainer').scrollTop = ele.offsetHeight;
+
+  }
 }

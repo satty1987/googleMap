@@ -10,11 +10,10 @@
 [latitude]="marker.location.latitude"
 [longitude]="marker.location.longitude"
 [markerDraggable]="false"
-(markerClick)="selectMarker($event)"
+(markerClick)="selectMarker($event,marker.id);showInfoWindow(iw)"
 [iconUrl]= "icon"
-(markerClick)=markerClick(iw)
 >
-<agm-info-window #iw>
+<agm-info-window #iw >
     <p><strong>{{marker.name}}</strong></p>  
       <p> {{marker.address.city}}, {{marker.address.country}}-{{marker.address.zipCode}} </p>
        
@@ -28,9 +27,9 @@
   <div class="columList storelocator-list">
     <div class=" p-4 small sticky"  (click)="toggle()">{{results.length}} STORES NEAR YOUR LOCATION
     </div>
-    <ul class="list-group" *ngIf="isCollapse" >
+    <ul class="list-group" *ngIf="isCollapse"  id="ulContainer">
      
-      <li class="list-group-item p-4 " *ngFor="let item of results" (click)="searchStore(item)">
+      <li class="list-group-item p-4 " *ngFor="let item of results" (click)="searchStore(item)" id={{item.id}}>
         <h3 class="text-bold">{{item.shortName}}</h3>
         <p class="mb-0 small">  {{item.address.street}}</p>
         <p class="mb-0 small"> {{item.address.zipCode}},{{item.address.state}}</p>
