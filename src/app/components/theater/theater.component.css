@@ -1,0 +1,33 @@
+.seat{
+    width:50px;
+    height:50px;
+    float:left;
+    margin:10px;
+}
+.isNot-available {
+    background:#ccc;
+}
+
+.is-available {
+    background: green;
+    cursor: pointer;
+}
+
+.checkAvailability {
+    background: #e20074;
+    cursor: pointer;
+}
+
+.clearfix{
+    clear: both;
+}
+md-card {
+    background: #f2f2f2;
+}
+
+md-card-subtitle {
+    color: red;
+}
+mat-grid-tile {
+    background: lightblue;
+  }

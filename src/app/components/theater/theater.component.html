@@ -1,0 +1,19 @@
+<div>
+  
+<mat-card>
+    <mat-card-subtitle><b>PICK YOUR SEATS</b></mat-card-subtitle>
+    <mat-card-content>
+        <mat-grid-list cols="12" rowHeight="2:2">
+            <mat-grid-tile *ngFor="let seat of seats" 
+           
+            [ngClass]="{'is-available':seat.available ,'isNot-available':!seat.available ,'checkAvailability':seat.isEdited}" (click)="checkAvailability(seat)">
+          {{seat.row}} - {{seat.seatNumber}}
+            </mat-grid-tile>
+
+        </mat-grid-list>
+    </mat-card-content>
+    <mat-card-footer>
+        You Selected {{totalSelectedSeats}} Seats.
+    </mat-card-footer>
+</mat-card>
+</div>
