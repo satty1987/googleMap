@@ -7,8 +7,8 @@ import { BusinessInformationComponent } from './components/business-information/
 
 const routes: Routes = [
   { path: '', component: AgmcomponentComponent },
-  { path: 'seats', component: TheaterComponent },
-  { path: 'forms', component: BusinessInformationComponent }
+  { path: 'seats', component: TheaterComponent }
+  // { path: 'forms', component: BusinessInformationComponent }
 
 ];
 
