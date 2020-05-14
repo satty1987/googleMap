@@ -1,0 +1,177 @@
+<h4 class="bold spacing-lg-b spacing-lg-t ">Business Contact information</h4>
+<form
+[formGroup]="businessContactModel"
+(ngSubmit)="onSubmit(businessContactModel)"
+>
+<div class="row">
+
+  <div class="col-sm-6 col-md-3">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control border-input toCapitalize"
+        formControlName="firstName"
+        id="firstName1"
+        placeholder="First Name"
+        trim-input
+      />
+      <app-validation-message
+        [updateToView]="form.firstName.touched && form.firstName.invalid"
+        [errorModel]="form.firstName.errors"
+        requiredPlaceHolder="First Name is required"
+        patternPlaceHolder="First Name should be only characters."
+      ></app-validation-message>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-1">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control border-input toCapitalize"
+        formControlName="middleName"
+        id="middleName1"
+        maxLength="1"
+        trim-input
+        placeholder="MI (Optional)"
+      />
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-md-4">
+    <div class="form-group">
+      <input
+        type="text"
+        id="lastName1"
+        class="form-control border-input toCapitalize"
+        formControlName="lastName"
+        placeholder="Last Name"
+        trim-input
+      />
+      <app-validation-message
+      [updateToView]="form.lastName.touched && form.lastName.invalid"
+      [errorModel]="form.lastName.errors"
+      requiredPlaceHolder="Last Name is required"
+      patternPlaceHolder="Last Name should be only characters."
+    ></app-validation-message>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control border-input toCapitalize"
+        formControlName="addressLine1"
+        id="address11"
+        trim-input
+        placeholder="Address Line1 (Optional)"
+      />
+      <app-validation-message
+      [updateToView]="form.addressLine1.touched && form.addressLine1.invalid"
+      [errorModel]="form.addressLine1.errors"
+      requiredPlaceHolder="Last Name is required"
+      patternPlaceHolder="Last Name should be only characters."
+    ></app-validation-message>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control border-input toCapitalize"
+        formControlName="addressLine2"
+        id="address21"
+        placeholder="Address Line2 (Optional)"
+        trim-input
+      />
+      <app-validation-message
+      [updateToView]="form.addressLine2.touched && form.addressLine2.invalid"
+      [errorModel]="form.addressLine2.errors"
+    ></app-validation-message>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control border-input toCapitalize"
+        formControlName="zipCode"
+        id="zipCode"
+        maxlength="5"
+        minlength="5"
+        trim-input
+        placeholder="Zip Code (Optional)"
+      />
+      <app-validation-message
+      [updateToView]="form.zipCode.touched && form.zipCode.invalid"
+      [errorModel]="form.zipCode.errors"
+      requiredPlaceHolder="Postal code is Required."
+      patternPlaceHolder="Postal code should be only numbers."
+      minLengthPlaceHolder="Postal code should be 5 digit."
+    ></app-validation-message>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control border-input toCapitalize"
+        formControlName="city"
+        id="city1"
+        trim-input
+        placeholder="City (Optional)"
+      />
+      <app-validation-message
+      [updateToView]="form.city.touched && form.city.invalid"
+      [errorModel]="form.city.errors"
+      requiredPlaceHolder="City is Required."
+      patternPlaceHolder="City will accept spaces in between Only."
+    ></app-validation-message>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="form-group select-wrapper">
+      <select class="form-control border-input" formControlName="state" placeholder="State (Optional)" >
+      <option disabled [ngValue]="null">Select State</option>
+      <option *ngFor="let stateItem of stateItems" [ngValue]="stateItem.key">
+          {{stateItem.value}}</option>
+  </select>
+      <app-validation-message
+      [updateToView]="form.state.touched && form.lastName.invalid"
+      [errorModel]="form.state.errors"
+      requiredPlaceHolder="State is required"
+
+    ></app-validation-message>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control border-input toCapitalize"
+        trim-input
+        formControlName="primaryContact"
+        placeholder="Primary Contact (Optional)"
+      />
+      <app-validation-message
+      [updateToView]="form.primaryContact.touched && form.primaryContact.invalid"
+      [errorModel]="form.primaryContact.errors"
+    ></app-validation-message>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-fill btn-secondary" (click)="reset()">Reset</button>
+
+<button type="submit" class="btn btn-info btn-fill magenta btn-submit-wd" [disabled]="businessContactModel.invalid">
+  Submit
+</button>
+</form>

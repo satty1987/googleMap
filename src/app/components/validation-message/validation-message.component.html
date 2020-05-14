@@ -1,0 +1,7 @@
+<div *ngIf="errorModel && updateToView" class="text-danger">
+  <div *ngIf="errorModel.required">{{requiredPlaceHolder}}</div>
+  <div *ngIf="errorModel.minlength">{{minLengthPlaceHolder}}</div>
+  <div *ngIf="errorModel.maxlength">{{maxLengthPlaceHolder}}</div>
+  <div *ngIf="errorModel.pattern">{{patternPlaceHolder}}</div>
+  <div *ngIf="errorModel.mustMatch">{{mustMatchPlaceHolder}}</div>
+</div>

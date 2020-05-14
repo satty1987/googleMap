@@ -1,0 +1,197 @@
+<form [formGroup]="businessInformationModel" (ngSubmit)="onSubmit(businessInformationModel)">
+
+  <div class="row tm-padding-10">
+    <div class="col-sm-6 col-md-4">
+      <h4>Business Information</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input toCapitalize" formControlName="businessName" maxlength="72"
+          trim-input placeholder="Business Name" />
+        <app-validation-message [updateToView]="form.businessName.touched && form.businessName.invalid"
+          [errorModel]="form.businessName.errors" patternPlaceHolder="Business Name should be only characters."
+          requiredPlaceHolder="Business Name is Required."></app-validation-message>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input toCapitalize" maxlength="30" formControlName="attentionName"
+          trim-input placeholder="Attention Name (Optional)" />
+        <app-validation-message [updateToView]="form.attentionName.touched && form.attentionName.invalid"
+          [errorModel]="form.attentionName.errors" patternPlaceHolder="Attention Name should be only characters.">
+        </app-validation-message>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input toCapitalize" formControlName="addressLine1" id="address11"
+          trim-input placeholder="Address Line1" maxlength="80" />
+        <app-validation-message [updateToView]="form.addressLine1.touched && form.addressLine1.invalid"
+          [errorModel]="form.addressLine1.errors" requiredPlaceHolder="Address is Required."
+          patternPlaceHolder="Last Name should be only characters."></app-validation-message>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input toCapitalize" maxlength="50" formControlName="addressLine2"
+          id="address21" [placeholder]="form.state.value === 'PR' ? 'URB/EDIF/COND (Optional)' : 'Address 2 (Optional)'"
+          trim-input />
+        <app-validation-message [updateToView]="form.addressLine2.touched && form.addressLine2.invalid"
+          [errorModel]="form.addressLine2.errors"></app-validation-message>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input" formControlName="zipCode" inputmode="numeric" maxlength="5" minlength="5"
+          trim-input placeholder="Zip Code" />
+        <app-validation-message [updateToView]="form.zipCode.touched && form.zipCode.invalid"
+          [errorModel]="form.zipCode.errors" requiredPlaceHolder="Postal code is Required."
+          patternPlaceHolder="Postal code should be only numbers."
+          minLengthPlaceHolder="Postal code should be 5 digit."></app-validation-message>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input toCapitalize" formControlName="city" id="city1" trim-input
+          placeholder="City" />
+        <app-validation-message [updateToView]="form.city.touched && form.city.invalid" [errorModel]="form.city.errors"
+          requiredPlaceHolder="City is Required." patternPlaceHolder="City will accept spaces in between Only.">
+        </app-validation-message>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group select-wrapper">
+        <select class="form-control border-input" formControlName="state" placeholder="State (Optional)">
+          <option disabled [ngValue]="null">Select State</option>
+          <option *ngFor="let stateItem of stateItems" [ngValue]="stateItem.key">
+            {{stateItem.value}}</option>
+        </select>
+        <app-validation-message [updateToView]="form.state.touched && form.state.invalid"
+          [errorModel]="form.state.errors" requiredPlaceHolder="State is required"></app-validation-message>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input toCapitalize" inputmode="numeric"
+          formControlName="offercode" placeholder="Offer Code (Optional)" minlength="16" maxlength="16" />
+        <app-validation-message [updateToView]="form.offercode.touched && form.offercode.invalid"
+          [errorModel]="form.offercode.errors" patternPlaceHolder="Invalid Offer Code. Please try again"
+          minLengthPlaceHolder="16 Digits are required"></app-validation-message>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input maskText" inputmode="numeric" formControlName="fein" maxlength="9" minlength="9"
+          trim-input placeholder="FEIN" (keydown)="form.confirmfein.setValue('')" />
+        <app-validation-message [updateToView]="form.fein.touched && form.fein.invalid" [errorModel]="form.fein.errors"
+          requiredPlaceHolder="FEIN Number is required." patternPlaceHolder="FEIN should be only numbers."
+          minLengthPlaceHolder="FEIN should be 9 digits."></app-validation-message>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input maskText" inputmode="numeric" formControlName="confirmfein" maxlength="9" minlength="9"
+          trim-input placeholder="Confirm FEIN" />
+        <app-validation-message [updateToView]="form.confirmfein.touched && form.confirmfein.invalid"
+          [errorModel]="form.confirmfein.errors" requiredPlaceHolder="Confirm FEIN Number is required."
+          patternPlaceHolder="Confirm FEIN should be only numbers."
+          minLengthPlaceHolder="Confirm FEIN should be 9 digits."></app-validation-message>
+        <div *ngIf="form.confirmfein.touched || form.confirmfein.valid || form.confirmfein.pristine"
+          class="text-danger">
+          <div *ngIf="form.confirmfein.errors?.mustMatch">
+            FEIN Number do not match.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input" formControlName="phone1" maxlength="12" minlength="12"
+          trim-input placeholder="Business Mobile Number" inputmode="numeric" id="phoneNumber" />
+        <app-validation-message [updateToView]="form.phone1.touched && form.phone1.invalid"
+          [errorModel]="form.phone1.errors" requiredPlaceHolder="Business Mobile Number is Required."
+          patternPlaceHolder="Business Mobile Number should only numbers."
+          minLengthPlaceHolder="Business Mobile Number should be 10 digit."></app-validation-message>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input" formControlName="businessEmail" maxlength="60"
+          placeholder="Business Email Address" />
+        <app-validation-message [updateToView]="form.businessEmail.touched && form.businessEmail.invalid"
+          [errorModel]="form.businessEmail.errors" requiredPlaceHolder="Email Address is Required."
+          patternPlaceHolder="Please enter a valid email."></app-validation-message>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input" inputmode="numeric" formControlName="employeecount" trim-input
+          placeholder="Number of Employees (Optional)" />
+        <app-validation-message [updateToView]="form.employeecount.touched && form.employeecount.invalid"
+          [errorModel]="form.employeecount.errors" patternPlaceHolder="Number of Employees should be only numbers.">
+        </app-validation-message>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input" inputmode="numeric" formControlName="requestedlines" trim-input
+          placeholder="Number of Lines Requested" />
+        <app-validation-message [updateToView]="form.requestedlines.touched && form.requestedlines.invalid"
+          [errorModel]="form.requestedlines.errors" requiredPlaceHolder="Number of Lines Requested is Required."
+          patternPlaceHolder="Number of Lines Requested should be only numbers."></app-validation-message>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input maskText" inputmode="numeric" formControlName="pin" trim-input
+          minlength="6" maxlength="15" placeholder="PIN/Passcode"  (keydown)="form.confirmPin.setValue('')" />
+        <app-validation-message [updateToView]="form.pin.touched && form.pin.invalid" [errorModel]="form.pin.errors"
+          requiredPlaceHolder="PIN / Passcode is required." patternPlaceHolder="PIN / Passcode should be only numbers."
+          minLengthPlaceHolder="PIN / Passcode should be at least 6 digits."></app-validation-message>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control border-input maskText" formControlName="confirmPin" trim-input minlength="6"
+          maxlength="15" placeholder="Confirm PIN/Passcode" inputmode="numeric" />
+        <app-validation-message [updateToView]="form.confirmPin.touched && form.confirmPin.invalid"
+          [errorModel]="form.confirmPin.errors" requiredPlaceHolder="Confirm PIN / Passcode is required."
+          patternPlaceHolder="Confirm PIN / Passcode should be only numbers."
+          minLengthPlaceHolder="Confirm PIN / Passcode should be at least 6 digits."></app-validation-message>
+        <div *ngIf="form.confirmPin.touched || form.confirmPin.valid || form.confirmPin.pristine" class="text-danger">
+          <div *ngIf="form.confirmPin.errors?.mustMatch">
+            PIN/Passcodes do not match.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-fill btn-secondary" (click)="reset()">Reset</button>
+
+  <button type="submit" class="btn btn-info btn-fill magenta btn-submit-wd" [disabled]="businessInformationModel.invalid">
+    Submit
+  </button>
+</form>

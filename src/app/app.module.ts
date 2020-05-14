@@ -12,15 +12,23 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { environment } from 'src/environments/environment';
 import { TheaterComponent } from './components/theater/theater.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { ReactiveFormsModule ,FormsModule} from '@angular/forms';
 import {MaterialModule} from './material.module';
+import { ValidationMessageComponent } from './components/validation-message/validation-message.component';
+import { BusinessContactComponent } from './components/business-contact/business-contact.component';
+import { TrimInputDirective } from './trim-input.directive';
+import { BusinessInformationComponent } from './components/business-information/business-information.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AutocompleteComponent,
     AgmcomponentComponent,
-    TheaterComponent
+    TheaterComponent,
+    ValidationMessageComponent,
+    BusinessContactComponent,
+    TrimInputDirective,
+    BusinessInformationComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +37,8 @@ import {MaterialModule} from './material.module';
     HttpClientModule,
     NgpMcqModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
     MaterialModule,
     AgmCoreModule.forRoot({
       apiKey: environment.APIKEY
