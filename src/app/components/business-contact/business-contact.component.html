@@ -3,6 +3,7 @@
 [formGroup]="businessContactModel"
 (ngSubmit)="onSubmit(businessContactModel)"
 >
+<div class="container">
 <div class="row">
 
   <div class="col-sm-6 col-md-3">
@@ -174,4 +175,5 @@
 <button type="submit" class="btn btn-info btn-fill magenta btn-submit-wd" [disabled]="businessContactModel.invalid">
   Submit
 </button>
+</div>
 </form>

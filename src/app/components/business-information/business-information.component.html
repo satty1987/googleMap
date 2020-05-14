@@ -1,5 +1,5 @@
 <form [formGroup]="businessInformationModel" (ngSubmit)="onSubmit(businessInformationModel)">
-
+  <div class="container">
   <div class="row tm-padding-10">
     <div class="col-sm-6 col-md-4">
       <h4>Business Information</h4>
@@ -194,4 +194,6 @@
   <button type="submit" class="btn btn-info btn-fill magenta btn-submit-wd" [disabled]="businessInformationModel.invalid">
     Submit
   </button>
+  </div>
+
 </form>
